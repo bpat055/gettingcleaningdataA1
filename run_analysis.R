@@ -21,7 +21,7 @@ merged <- cbind(subject, y_merged, x_merged) %>% tbl_df()
 # 2. Extract only the measurements on the mean and standard deviation for each measurement
 extract <- select(merged, subject, code, contains("mean"), contains("std"))
 # 3. Uses descriptive activity names to name the activities in the data set
-
+        
 extract$code <- activities[extract$code,2]
 extract$code <- extract$code$activity
 
@@ -38,4 +38,4 @@ names(extract) <- gsub("Mag", "Magnitude", names(extract))
 
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
-tidy_data <- extract %>% group_by(subject, code$activity) %>% summarise_all(funs(mean))
+tidy_data <- extract %>% group_by(subject, code) %>% summarise_all(funs(mean))

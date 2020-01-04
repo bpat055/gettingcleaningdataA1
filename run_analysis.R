@@ -39,3 +39,7 @@ names(extract) <- gsub("Mag", "Magnitude", names(extract))
 # 5. From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
 tidy_data <- extract %>% group_by(subject, code) %>% summarise_all(funs(mean))
+
+# Write the tidy_data to a text file
+
+write.table(tidy_data, "tidy_data.txt", row.names = FALSE)
